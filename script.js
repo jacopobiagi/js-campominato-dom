@@ -64,13 +64,18 @@ start.addEventListener("click",
                 element.addEventListener("click",
             
                     ()=>{
+
+                        //CONTROLLO PER BLOCCARE LA GRIGLIA IN CASO DI SCONFITTA
                         if(!bombaPresa){
 
+                            //CONTROLLO PER EVITARE DI GUADAGNARE PIU' PUNTI NELLA STESSA CELLA
                             if(element.style.backgroundColor != "red"){
 
                                 console.log("hai cliccato l'elemento numero: "+ i);
                                 element.style.backgroundColor = "red";
                                 bombaPresa = true;
+
+                                //AVVIO ALLA SCOPERTA DELLE BOMBE
                                 scopriBombe(grid, arrBoom);
                             }
                         }
@@ -85,8 +90,10 @@ start.addEventListener("click",
             
                     ()=>{
 
+                        //CONTROLLO PER BLOCCARE LA GRIGLIA IN CASO DI SCONFITTA
                         if(!bombaPresa){
                             
+                            //CONTROLLO PER EVITARE DI GUADAGNARE PIU' PUNTI NELLA STESSA CELLA
                             if(element.style.backgroundColor != "blue"){
 
                                 element.style.backgroundColor = "blue";
@@ -143,8 +150,3 @@ function scopriBombe(grid, arrBoom) {
         bombCell.style.backgroundColor = "red";
     }
 }
-
-    
-
-
-
