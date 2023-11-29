@@ -46,6 +46,7 @@ start.addEventListener("click",
         contatore.innerHTML = points;
         console.log(arrBoom)
 
+        //IINSERIMENTO DELLE CELLE NELLA GRIGLIA
         for(let i = 1; i <= cond; i++){
 
             let element = document.createElement("div");
@@ -55,6 +56,7 @@ start.addEventListener("click",
             element.classList.add(classe);    
             element.innerHTML = i;
 
+            //CASE 1: LA CELLA DELLA GRIGLIA CORRISPONDE ALL'ELENCO DI CELLE CON BOMBE  
             if(arrBoom[indexBoom] == i){
 
                 indexBoom++;
@@ -69,12 +71,14 @@ start.addEventListener("click",
                                 console.log("hai cliccato l'elemento numero: "+ i);
                                 element.style.backgroundColor = "red";
                                 bombaPresa = true;
+                                scopriBombe(grid, arrBoom);
                             }
                         }
-                        //scopriBombe(grid, element, cond, arrBoom);
+                        
                         
                     }
                 )
+            // CASE 2: LA CELLA NON CORRISPONDE ALL'ELENCO
             }else{
 
                 element.addEventListener("click",
@@ -103,10 +107,10 @@ start.addEventListener("click",
 
 )
 
+// FUNZIONE CHE CREA UN'ARRAY DI NUMERI RANDOM
 function getRandomArr(minNum, maxNum, arrLength){
 
     const arrayRed = [];
-   
 
     while(arrayRed.length < arrLength){
 
@@ -123,22 +127,23 @@ function getRandomArr(minNum, maxNum, arrLength){
     return arrayRed;
 }
 
+// FUNZIONE CHE CREA UN NUMERO RANDOM
 function getRandom(min, max){
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-/*
-function scopriBombe(grid, element, cond, arrboom){
 
-    let index = 0;
 
-    for(let i = 0; i < cond; i++){
+// FUNZIONE CHE SCOPRE LE ALTRE BOMBE RIMASTE
+function scopriBombe(grid, arrBoom) {
+    for (let i = 0; i < arrBoom.length; i++) {
+        let bombIndex = arrBoom[i] - 1; // L'indice della bomba nell'array arrBoom
 
-        if(arrboom[index] == i){
-
-        }
+        // Seleziona la cella corrispondente alla bomba e colorala di rosso
+        let bombCell = grid.children[bombIndex];
+        bombCell.style.backgroundColor = "red";
     }
 }
-*/
+
     
 
 
